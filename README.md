@@ -69,3 +69,7 @@ Plots cpu/memory usage for a given, or latest found, `metrace json file`.
 
 Output is a html file where you can download the images, zoom in and hover to inspect the different traces.
 
+
+## Samples
+
+Docs folder contains a sample of a [metrace json file](./docs/metrace_1568385178098218.json) and a [metrace html report](./docs/metrace_report.html)
