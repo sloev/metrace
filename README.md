@@ -2,7 +2,7 @@
 
 Metrace makes it easy to get a nice interactive html plot of the cpu/memory usage of a whole process tree.
 
-![metrace report](https://raw.githubusercontent.com/sloev/metrace/master/docs/report.png)
+![metrace report](https://raw.githubusercontent.com/sloev/metrace/master/docs/report.png =200x)
 
 ## Install
 
