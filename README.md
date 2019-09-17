@@ -1,3 +1,5 @@
+[![Latest Version](https://img.shields.io/pypi/v/metrace.svg)](https://pypi.python.org/pypi/metrace) [![Python Support](https://img.shields.io/pypi/pyversions/metrace.svg)](https://pypi.python.org/pypi/metrace)
+
 # Metrace - cpu/memory tracing for process trees
 
 Metrace makes it easy to get a nice interactive html plot of the cpu/memory usage of a whole process tree.
