@@ -41,7 +41,11 @@ $ metrace run python foobar.py
 
 After installation you will have the **metrace** command available.
 
-It has two subcommands:
+```
+$ metrace run python main.py && metrace plot
+```
+
+**It has two subcommands:**
 
 ### run
 
@@ -73,3 +77,7 @@ Output is a html file where you can download the images, zoom in and hover to in
 ## Samples
 
 Docs folder contains a sample of a [metrace json file](./docs/metrace_1568385178098218.json) and a [metrace html report](./docs/metrace_report.html)
+
+# Attribution
+
+[plotly.min.js](https://github.com/plotly/plotly.js) Licensed under MIT, has been included in this library here: [metrace/plotly_latest.min.js](./metrace/plotly_latest.min.js)
