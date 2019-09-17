@@ -1,0 +1,12 @@
+{"type": "metrics", "time_ms": 1568385178100.363, "properties": {"ROOT": {"cpu": 94.0, "memory_bytes": 1462272}}}
+{"type": "trace", "time_ms": 1568385178189.3591, "properties": {"name": "foobar", "type": "begin"}}
+{"type": "trace", "time_ms": 1568385179197.23, "properties": {"name": "foobar", "type": "end"}}
+{"type": "metrics", "time_ms": 1568385180099.37, "properties": {"ROOT": {"cpu": 0.0, "memory_bytes": 14401536}}}
+{"type": "trace", "time_ms": 1568385181199.515, "properties": {"name": "foobar", "type": "begin"}}
+{"type": "trace", "time_ms": 1568385182205.577, "properties": {"name": "foobar", "type": "end"}}
+{"type": "metrics", "time_ms": 1568385184099.56, "properties": {"ROOT": {"cpu": 0.0, "memory_bytes": 14401536}}}
+{"type": "trace", "time_ms": 1568385184208.807, "properties": {"name": "foobar", "type": "begin"}}
+{"type": "trace", "time_ms": 1568385185214.981, "properties": {"name": "foobar", "type": "end"}}
+{"type": "trace", "time_ms": 1568385187221.48, "properties": {"name": "foobar", "type": "begin"}}
+{"type": "metrics", "time_ms": 1568385188099.5322, "properties": {"ROOT": {"cpu": 0.0, "memory_bytes": 14401536}}}
+{"type": "trace", "time_ms": 1568385188228.613, "properties": {"name": "foobar", "type": "end"}}
