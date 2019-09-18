@@ -4,7 +4,11 @@
 
 Metrace makes it easy to get a nice interactive html plot of the cpu/memory usage of a whole process tree.
 
-<img src="https://raw.githubusercontent.com/sloev/metrace/master/docs/report.png" width="400">
+
+<kbd>
+<img src="https://raw.githubusercontent.com/sloev/metrace/master/docs/report.png" width="550">
+</kbd>
+
 
 ## Install
 
@@ -18,7 +22,11 @@ $ pip install metrace
 
 Metrace lets you annotate specific parts of your code with scopes and these will become part of your final plot output and end up look like this:
 
-![metrace trace annotation](https://raw.githubusercontent.com/sloev/metrace/master/docs/trace_annotation.png)
+
+<kbd>
+<img src="https://raw.githubusercontent.com/sloev/metrace/master/docs/trace_annotation.png" width="200">
+</kbd>
+
 
 Metrace gives you a context manager `trace` you can wrap code blocks with:
 
