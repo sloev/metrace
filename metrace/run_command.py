@@ -44,11 +44,13 @@ def post(data, tries=2):
             logging.debug("post failed")
             return None
 
+
 __EPOCH = datetime(1970, 1, 1)
 
 
 def get_epoch():
     return (datetime.utcnow() - __EPOCH).total_seconds()
+
 
 @contextmanager
 def trace(name):
@@ -92,7 +94,9 @@ def gather_info_tree_string(root_pid):
             "cpu": p.cpu_percent(interval=0.001),
             "memory_bytes": p.memory_info()[0],
         }
-    return json.dumps({"type": "metrics", "utc_epoch": get_epoch(), "properties": struct})
+    return json.dumps(
+        {"type": "metrics", "utc_epoch": get_epoch(), "properties": struct}
+    )
 
 
 @contextmanager

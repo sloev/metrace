@@ -9,10 +9,12 @@ import glob
 from metrace import plotly_js_source
 import webbrowser
 
+
 def utc_epoch_to_local_datetime(utc_epoch):
     offset = datetime.fromtimestamp(utc_epoch) - datetime.utcfromtimestamp(utc_epoch)
     utc = datetime.utcfromtimestamp(utc_epoch)
     return utc + offset
+
 
 def interpolate(target_x, ref_x, ref_y):
     x0 = y0 = x1 = y1 = 0
@@ -106,9 +108,7 @@ def generate_figure(json_data, field, title):
         divider, unit = format_bytes(m, field)
         traces.append(
             go.Scatter(
-                x=[
-                    utc_epoch_to_local_datetime(utc_epoch) for utc_epoch in data["x"]
-                ],
+                x=[utc_epoch_to_local_datetime(utc_epoch) for utc_epoch in data["x"]],
                 y=data["y"],
                 name=f"pid: {pid}",
                 mode="lines+markers",
