@@ -16,6 +16,7 @@ import logging
 from socket import socket
 import random
 import string
+from datetime import datetime
 
 from metrace.server import run_forever
 
@@ -44,8 +45,11 @@ def post(data, tries=2):
             return None
 
 
-def get_ms():
-    return time.time() * 1000.0
+__EPOCH = datetime(1970, 1, 1)
+
+
+def get_epoch():
+    return (datetime.utcnow() - __EPOCH).total_seconds()
 
 
 @contextmanager
@@ -54,7 +58,7 @@ def trace(name):
     post(
         {
             "type": "trace",
-            "time_ms": get_ms(),
+            "utc_epoch": get_epoch(),
             "properties": {"name": name, "type": "begin", "pid": pid},
         }
     )
@@ -62,7 +66,7 @@ def trace(name):
     post(
         {
             "type": "trace",
-            "time_ms": get_ms(),
+            "utc_epoch": get_epoch(),
             "properties": {"name": name, "type": "end", "pid": pid},
         }
     )
@@ -90,7 +94,9 @@ def gather_info_tree_string(root_pid):
             "cpu": p.cpu_percent(interval=0.001),
             "memory_bytes": p.memory_info()[0],
         }
-    return json.dumps({"type": "metrics", "time_ms": get_ms(), "properties": struct})
+    return json.dumps(
+        {"type": "metrics", "utc_epoch": get_epoch(), "properties": struct}
+    )
 
 
 @contextmanager

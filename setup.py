@@ -10,11 +10,11 @@ requirements = ["plotly==4.1.1", "psutil==5.6.3", "six==1.12.0", "retrying==1.3.
 
 setup(
     name="metrace",
-    version="1.0.0",
+    version="1.0.1",
     author="sloev",
     author_email="johannes.valbjorn@gmail.com",
-    url='https://github.com/sloev/metrace',
-    description='cpu and memory tracing for process trees',
+    url="https://github.com/sloev/metrace",
+    description="cpu and memory tracing for process trees",
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=["metrace"],

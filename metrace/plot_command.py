@@ -10,6 +10,12 @@ from metrace import plotly_js_source
 import webbrowser
 
 
+def utc_epoch_to_local_datetime(utc_epoch):
+    offset = datetime.fromtimestamp(utc_epoch) - datetime.utcfromtimestamp(utc_epoch)
+    utc = datetime.utcfromtimestamp(utc_epoch)
+    return utc + offset
+
+
 def interpolate(target_x, ref_x, ref_y):
     x0 = y0 = x1 = y1 = 0
     for x, y in zip(ref_x, ref_y):
@@ -79,10 +85,10 @@ def generate_figure(json_data, field, title):
 
     for row in json_data:
         if row["type"] == "metrics":
-            time_ms = row["time_ms"]
+            utc_epoch = row["utc_epoch"]
 
             for pid, metrics in row["properties"].items():
-                consumption_over_time[pid]["x"].append(time_ms)
+                consumption_over_time[pid]["x"].append(utc_epoch)
                 consumption_over_time[pid]["y"].append(metrics[field])
 
     max_used = 0
@@ -102,9 +108,7 @@ def generate_figure(json_data, field, title):
         divider, unit = format_bytes(m, field)
         traces.append(
             go.Scatter(
-                x=[
-                    datetime.utcfromtimestamp(time_ms / 1000.0) for time_ms in data["x"]
-                ],
+                x=[utc_epoch_to_local_datetime(utc_epoch) for utc_epoch in data["x"]],
                 y=data["y"],
                 name=f"pid: {pid}",
                 mode="lines+markers",
@@ -117,7 +121,11 @@ def generate_figure(json_data, field, title):
     trace_radius = max_used / 20
     min_used = int(min_used - trace_radius)
     divider, unit = format_bytes(max_used, field)
-    ticks = [x for x in range(0, max_used, int(max_used / 10.0))]
+    if not max_used:
+        ticks = [0.0, 1.0]
+        tick_text = []
+    else:
+        ticks = [x for x in range(0, max_used, int(max_used / 10.0))]
     tick_text = ["{:.2f}{}".format(x / divider, unit) for x in ticks]
 
     annotations = defaultdict(lambda: defaultdict(list))
@@ -128,10 +136,10 @@ def generate_figure(json_data, field, title):
             pid = properties["pid"]
             ref_x = consumption_over_time[pid]["x"]
             ref_y = consumption_over_time[pid]["y"]
-            target_x = row["time_ms"]
+            target_x = row["utc_epoch"]
             target_y = interpolate(target_x, ref_x, ref_y)
 
-            target_x = datetime.utcfromtimestamp(target_x / 1000.0)
+            target_x = utc_epoch_to_local_datetime(target_x)
             name = properties["name"]
             annotations[pid][name].append(dict(x=target_x, y=target_y, **properties))
 
@@ -227,7 +235,7 @@ def generate_html_report(trace_filename=None, output_filename=None, autoopen=Tru
         for l in f.readlines():
             json_data.append(json.loads(l))
 
-    json_data = sorted(json_data, key=lambda x: x["time_ms"])
+    json_data = sorted(json_data, key=lambda x: x["utc_epoch"])
 
     mem_fig = generate_figure(json_data, "memory_bytes", "Memory Consumption")
     cpu_fig = generate_figure(json_data, "cpu", "CPU Consumption")
