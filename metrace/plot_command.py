@@ -117,7 +117,11 @@ def generate_figure(json_data, field, title):
     trace_radius = max_used / 20
     min_used = int(min_used - trace_radius)
     divider, unit = format_bytes(max_used, field)
-    ticks = [x for x in range(0, max_used, int(max_used / 10.0))]
+    if not max_used:
+        ticks = [0.0, 1.0]
+        tick_text = []
+    else:
+        ticks = [x for x in range(0, max_used, int(max_used / 10.0))]
     tick_text = ["{:.2f}{}".format(x / divider, unit) for x in ticks]
 
     annotations = defaultdict(lambda: defaultdict(list))
