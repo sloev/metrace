@@ -6,7 +6,7 @@ this_directory = path.abspath(path.dirname(__file__))
 with open(path.join(this_directory, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
-requirements = ["plotly==4.1.1", "psutil==5.6.3", "six==1.12.0", "retrying==1.3.3"]
+requirements = ["plotly==4.1.1", "psutil==5.6.6", "six==1.12.0", "retrying==1.3.3"]
 
 setup(
     name="metrace",
