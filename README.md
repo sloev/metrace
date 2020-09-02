@@ -2,6 +2,8 @@
 
 # Metrace - cpu/memory tracing for process trees
 
+<a href="https://www.buymeacoffee.com/sloev" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-pink.png" alt="Buy Me A Coffee" height="51px" width="217px"></a>
+
 Metrace makes it easy to get a nice interactive html plot of the cpu/memory usage of a whole process tree.
 
 
